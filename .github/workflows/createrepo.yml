@@ -16,9 +16,13 @@ on:
         required: true
         type: string
 
+concurrency:
+  group: ${{ inputs.repo }}/${{ inputs.os-version }}/${{ inputs.oc-version }}/${{ inputs.arch }}
+  cancel-in-progress: false
+
 jobs:
   createrepo:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo ${{ inputs.oc-version }} ${{ inputs.arch }}
+        run: echo ${{ inputs.repo }}/${{ inputs.os-version }}/${{ inputs.oc-version }}/${{ inputs.arch }}
