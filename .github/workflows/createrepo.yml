@@ -12,9 +12,6 @@ on:
       repo:
         required: true
         type: string
-    secrets:
-      token:
-        required: true
 
 jobs:
   createrepo:
