@@ -34,7 +34,14 @@ jobs:
   createrepo:
     uses: lkiesow/workflow_call_test/.github/workflows/createrepo.yml@main
     needs: build
+    strategy:
+      matrix:
+        os-version:
+          - 7
+          - 8
+          - 9
     with:
       oc-version: ${{ needs.build.outputs.oc-version }}
+      os-version: ${{ matrix.os-version }}
       arch: noarch
       repo: testing

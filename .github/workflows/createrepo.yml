@@ -6,6 +6,9 @@ on:
       oc-version:
         required: true
         type: string
+      os-version:
+        required: true
+        type: string
       arch:
         required: true
         type: string
