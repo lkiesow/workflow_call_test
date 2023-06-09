@@ -18,15 +18,14 @@ jobs:
           - 7
           - 8
           - 9
-        repo:
-          - testing
-          - release
-        arch:
-          - noarch
-          - x86_64
+    outputs:
+      oc-version: ${{ steps.version.outputs.version }}
     name: createrepo (el${{ matrix.osversion }}, ${{ matrix.repo }}/${{ matrix.arch }})
     runs-on: ubuntu-latest
     steps:
+
+      - id: version
+        run: echo "version=${{ env.OC_VERSION }}" >> $GITHUB_OUTPUT
 
       - name: hello world
         run: >
@@ -34,6 +33,7 @@ jobs:
 
   createrepo:
     uses: lkiesow/workflow_call_test/.github/workflows/createrepo.yml@main
+    needs: build
     with:
-      oc-version: ${{ env.OC_VERSION }}
+      oc-version: ${{ needs.build.outputs.oc-version }}
       arch: noarch
