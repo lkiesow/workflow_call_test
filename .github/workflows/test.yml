@@ -22,7 +22,6 @@ jobs:
 
       - id: version
         run: echo "version=${{ env.OC_VERSION }}" >> $GITHUB_OUTPUT
-
       - name: hello world
         run: >
           echo hello world
