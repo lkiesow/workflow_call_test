@@ -1,0 +1,20 @@
+name: Createrepo
+
+on:
+  workflow_call:
+    inputs:
+      oc-version:
+        required: true
+      arch:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+
+jobs:
+  createrepo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo ${{ inputs.oc-version }} ${{ inputs.arch }}

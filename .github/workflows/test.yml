@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  push:
+
+concurrency:
+  group: opencast-createrepo
+  cancel-in-progress: false
+
+env:
+  OC_VERSION: 14
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        osversion:
+          - 7
+          - 8
+          - 9
+        repo:
+          - testing
+          - release
+        arch:
+          - noarch
+          - x86_64
+    name: createrepo (el${{ matrix.osversion }}, ${{ matrix.repo }}/${{ matrix.arch }})
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: hello world
+        run: >
+          echo hello world
+
+  createrepo:
+    uses: lkiesow/workflow_call_test/.github/workflows/createrepo.yml@main
+    with:
+      oc-version: ${{ env.OC_VERSION }}
+      arch: noarch
