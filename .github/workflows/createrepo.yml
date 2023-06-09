@@ -23,6 +23,10 @@ concurrency:
 jobs:
   createrepo:
     runs-on: ubuntu-latest
+    env:
+      s3path: ${{ inputs.repo }}/${{ inputs.os-version }}/${{ inputs.oc-version }}/${{ inputs.arch }}
     steps:
       - name: test
         run: echo ${{ inputs.repo }}/${{ inputs.os-version }}/${{ inputs.oc-version }}/${{ inputs.arch }}
+      - name: test
+        run: echo ${s3path}
