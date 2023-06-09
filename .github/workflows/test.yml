@@ -3,10 +3,6 @@ name: Test
 on:
   push:
 
-concurrency:
-  group: opencast-createrepo
-  cancel-in-progress: false
-
 env:
   OC_VERSION: 14
 
